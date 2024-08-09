@@ -1,6 +1,6 @@
 package org.AsimAnsari.service;
 
-import org.AsimAnsari.dao.UserDAO;
+import org.AsimAnsari.repo.UserDAO;
 import org.AsimAnsari.model.User;
 
 import java.sql.SQLException;

@@ -30,14 +30,14 @@ public class SendOTPService {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication(from, "xajj jkty fykw knhq");
+                return new PasswordAuthentication(from, "bqwi ktke ycad uzob");
 
             }
 
         });
 
         // Used to debug SMTP issues
-        session.setDebug(true);
+        session.setDebug(false);
 
         try {
             // Create a default MimeMessage object.
@@ -60,6 +60,7 @@ public class SendOTPService {
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
+            System.out.println("Error Messaging");
             mex.printStackTrace();
         }
 

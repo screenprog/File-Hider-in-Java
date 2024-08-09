@@ -1,7 +1,9 @@
 package org.AsimAnsari.views;
 
-import org.AsimAnsari.dao.DataDAO;
+import org.AsimAnsari.repo.DataDAO;
 import org.AsimAnsari.model.Data;
+import org.AsimAnsari.model.User;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,22 +11,23 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserView {
-    String email;
-    boolean logedIn;
-    public UserView(String email)
+    private User user;
+    private boolean loggedIn;
+    public UserView(User user)
     {
-        this.logedIn = true;
-        this.email = email;
+        this.loggedIn = true;
+        this.user = user;
     }
 
     public void home() {
         do {
-            System.out.println("Welcome "+this.email);
+            System.out.println("Welcome "+this.user.name());
             System.out.println("Press 1 to show hidden files");
             System.out.println("Press 2 to hide a new file");
             System.out.println("Press 3 to un-hide a file");
             System.out.println("Press 4 to logout");
             System.out.println("Press 0 to exit");
+            System.out.print("Option: ");
             Scanner sc = new Scanner(System.in);
             int ch = Integer.parseInt(sc.nextLine());
             switch(ch)
@@ -32,7 +35,7 @@ public class UserView {
                 case 0 -> System.exit(0);
                 case 1 -> {
                     try {
-                        List<Data> files = DataDAO.getAllFiles(this.email);
+                        List<Data> files = DataDAO.getAllFiles(this.user.email());
                         System.out.println("ID\t |\t File Name");
                         for (Data file : files)
                             System.out.println(file.id() +"\t |\t "+ file.fileName());
@@ -45,7 +48,7 @@ public class UserView {
                     System.out.println("Enter file path : ");
                     String filePath = sc.nextLine();
                     File f = new File(filePath);
-                    Data file = new Data(f.getName(), filePath, this.email);
+                    Data file = new Data(f.getName(), filePath, this.user.email());
                     try
                     {
                         int response = DataDAO.hideFile(file);
@@ -57,7 +60,7 @@ public class UserView {
                 }
                 case 3 -> {
                     try {
-                        List<Data> files = DataDAO.getAllFiles(this.email);
+                        List<Data> files = DataDAO.getAllFiles(this.user.email());
                         System.out.println("ID\t |\t File Name");
                         for (Data file : files)
                             System.out.println(file.id() +"\t |\t "+ file.fileName());
@@ -77,10 +80,10 @@ public class UserView {
                         throw new RuntimeException(e);
                     }
                 }
-                case 4 -> logedIn = false;
+                case 4 -> loggedIn = false;
                 default -> System.out.println("Wrong option...!\n");
             }
-        }while(logedIn);
+        }while(loggedIn);
 
 
     }

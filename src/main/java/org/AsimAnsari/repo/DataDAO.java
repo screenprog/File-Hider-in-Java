@@ -1,4 +1,4 @@
-package org.AsimAnsari.dao;
+package org.AsimAnsari.repo;
 
 import org.AsimAnsari.db.MyConnection;
 import org.AsimAnsari.model.Data;
