@@ -11,7 +11,7 @@ public class SendOTPService {
         String to = email;
 
         // Sender's email ID needs to be mentioned
-        String from = "introassigma@gmail.com";
+        String from = System.getenv("MY_EMAIL");
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
@@ -30,7 +30,7 @@ public class SendOTPService {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication(from, "bqwi ktke ycad uzob");
+                return new PasswordAuthentication(from, System.getenv("MY_EMAIL_APP_PASS"));
 
             }
 
