@@ -1,6 +1,6 @@
-package org.AsimAnsari;
+package org.screenprog;
 
-import org.AsimAnsari.views.Welcome;
+import org.screenprog.views.Welcome;
 
 public class Main {
     public static void main(String[] args) {

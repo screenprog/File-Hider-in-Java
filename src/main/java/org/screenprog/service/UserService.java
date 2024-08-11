@@ -1,7 +1,7 @@
-package org.AsimAnsari.service;
+package org.screenprog.service;
 
-import org.AsimAnsari.repo.UserDAO;
-import org.AsimAnsari.model.User;
+import org.screenprog.repo.UserDAO;
+import org.screenprog.model.User;
 
 import java.sql.SQLException;
 

@@ -1,8 +1,7 @@
-package org.AsimAnsari.views;
+package org.screenprog.views;
 
-import org.AsimAnsari.repo.UserDAO;
-import org.AsimAnsari.model.User;
-import org.AsimAnsari.service.*;
+import org.screenprog.repo.UserDAO;
+import org.screenprog.service.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

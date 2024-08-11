@@ -1,4 +1,4 @@
-package org.AsimAnsari.model;
+package org.screenprog.model;
 public record Data(int id, String fileName, String path, String email) {
 
     public Data(int id, String fileName, String path) {

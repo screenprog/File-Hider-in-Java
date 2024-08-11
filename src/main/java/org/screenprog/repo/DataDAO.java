@@ -1,7 +1,7 @@
-package org.AsimAnsari.repo;
+package org.screenprog.repo;
 
-import org.AsimAnsari.db.MyConnection;
-import org.AsimAnsari.model.Data;
+import org.screenprog.db.MyConnection;
+import org.screenprog.model.Data;
 
 import java.io.*;
 import java.sql.*;

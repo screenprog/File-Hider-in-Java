@@ -1,4 +1,4 @@
-package org.AsimAnsari.service;
+package org.screenprog.service;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

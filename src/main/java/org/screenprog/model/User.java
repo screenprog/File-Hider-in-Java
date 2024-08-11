@@ -1,4 +1,4 @@
-package org.AsimAnsari.model;
+package org.screenprog.model;
 
 public record User(String name, String email, String password) {
 
