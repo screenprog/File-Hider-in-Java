@@ -2,9 +2,7 @@ package org.AsimAnsari.views;
 
 import org.AsimAnsari.repo.UserDAO;
 import org.AsimAnsari.model.User;
-import org.AsimAnsari.service.GenerateOTP;
-import org.AsimAnsari.service.SendOTPService;
-import org.AsimAnsari.service.UserService;
+import org.AsimAnsari.service.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +12,13 @@ import java.util.Scanner;
 
 
 public class Welcome {
-    UserView userView;
+   LoginService loginService;
+    Scanner sc;
 
-//    public Welcome() {
-//        this.userView = new UserView();
-//    }
+    public Welcome() {
+        this.loginService = new LoginService();
+        this.sc = new Scanner(System.in);
+    }
 
     public void welcomeScreen()
     {
@@ -43,7 +43,6 @@ public class Welcome {
     }
 
     private void signup() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter email : ");
         String email = sc.nextLine();
         String genOTP = GenerateOTP.getOTP();
@@ -52,36 +51,20 @@ public class Welcome {
         String OTP = sc.nextLine();
         if(OTP.equals(genOTP))
         {
-            System.out.println("Enter name : ");
-            String name = sc.nextLine();
-            Integer response = UserService.saveUser(new User(name, email));
-            switch (response){
-                case 0 -> System.out.println("User already exist");
-                case 1 -> System.out.println("User registered");
-                default -> System.out.println("Unexpected value: " + response);
-            }
+            loginService.signup(email);
         }
         else
             System.out.println("Wrong OTP");
     }
 
     private void login() {
-
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter email : ");
         String email = sc.nextLine();
         try
         {
             if (UserDAO.isExist(email))
             {
-                String genOTP = GenerateOTP.getOTP();
-                SendOTPService.sendOTP(email,genOTP);
-                System.out.print("Enter OTP : ");
-                String OTP = sc.nextLine();
-                if (OTP.equals(genOTP))
-                    new UserView(UserDAO.getUserByEmail(email)).home();
-                else
-                    System.out.println("Wrong OTP");
+                loginService.login(email);
             }
             else
             {

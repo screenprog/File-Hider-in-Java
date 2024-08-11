@@ -15,21 +15,19 @@ public class UserDAO {
         PreparedStatement ps = con.prepareStatement("SELECT email FROM users");
         ResultSet rs = ps.executeQuery();
         while( rs.next() )
-        {
             if(email.equals(rs.getString(1)))
-            {
                 return true;
-            }
-        }
+
         return false;
     }
 
     public static int saveUser(User user) throws SQLException
     {
         Connection con = MyConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("INSERT INTO users VALUES (default, ?, ?)");
+        PreparedStatement ps = con.prepareStatement("INSERT INTO users VALUES (default, ?, ?, ?)");
         ps.setString(1, user.name());
         ps.setString(2, user.email());
+        ps.setString(3, user.password());
         return ps.executeUpdate();
     }
 
@@ -39,6 +37,6 @@ public class UserDAO {
         ps.setString(1,email);
         ResultSet rs = ps.executeQuery();
         rs.next();
-        return new User(rs.getString(2), rs.getString(3));
+        return new User(rs.getString(2), rs.getString(3), rs.getString(4));
     }
 }
