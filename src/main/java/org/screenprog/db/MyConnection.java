@@ -11,7 +11,6 @@ public class MyConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectone","root","Lava235$Root");
-//            System.out.println("Connection established ");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

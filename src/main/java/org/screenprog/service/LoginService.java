@@ -15,14 +15,14 @@ public class LoginService {
     }
 
     public void signup(String email){
-        System.out.println("Enter name : ");
+        System.out.print("Enter name : ");
         String name = sc.nextLine();
         boolean passUnmatched = true;
         String password;
         do {
-            System.out.println("Set password : ");
+            System.out.print("Set password : ");
             password = sc.nextLine();
-            System.out.println("Confirm password : ");
+            System.out.print("Confirm password : ");
             String confirmPass = sc.nextLine();
             if(confirmPass.equals(password))
                 passUnmatched = false;
@@ -41,11 +41,12 @@ public class LoginService {
 
     public void login(String email) throws SQLException {
         User user = UserDAO.getUserByEmail(email);
-        System.out.println("Enter password : ");
+        System.out.print("Enter password : ");
         String password = sc.nextLine();
         if (Encryption.decrypt(password, user.password()))
             new UserView(user).home();
-        else
+        else {
             System.out.println("Unauthorised user");
+        }
     }
 }

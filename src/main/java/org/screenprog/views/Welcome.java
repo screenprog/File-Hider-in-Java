@@ -41,9 +41,16 @@ public class Welcome {
         }
     }
 
-    private void signup() {
-        System.out.println("Enter email : ");
-        String email = sc.nextLine();
+    private void signup(){
+        String email;
+        do {
+            System.out.print("Enter email : ");
+            email = sc.nextLine();
+        } while(EmailValidator.isValidEmail.negate().test(email));
+
+       if(ifUserExist(email))
+            return;
+
         String genOTP = GenerateOTP.getOTP();
         SendOTPService.sendOTP(email, genOTP);
         System.out.print("Enter OTP : ");
@@ -75,6 +82,18 @@ public class Welcome {
         {
             ex.printStackTrace();
         }
-        
+
+    }
+
+    private boolean ifUserExist(String email) {
+        try {
+            if(UserDAO.isExist(email)){
+                System.out.println("Use any other email " + email + " already exist");
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }

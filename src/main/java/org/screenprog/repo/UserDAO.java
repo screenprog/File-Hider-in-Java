@@ -39,4 +39,5 @@ public class UserDAO {
         rs.next();
         return new User(rs.getString(2), rs.getString(3), rs.getString(4));
     }
+
 }
